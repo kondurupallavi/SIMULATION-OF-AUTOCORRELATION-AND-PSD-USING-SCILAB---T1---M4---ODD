@@ -56,4 +56,63 @@ Visualize the autocorrelation function and PSD.
 - If any Error, correct it in code and execute again.
 - Verify the generated waveform using Tabulation and Model Waveform.
 
-## MODEL GRAPH
+## CODE
+clc;
+clear;
+close;
+
+// Time
+t = 0:0.01:6;
+
+// Analog signal
+x = sin(2*%pi*0.7*t);
+
+// Autocorrelation
+Rxx = xcorr(x,x);
+
+// PSD
+PSD = abs(fft(x)).^2;
+
+// Frequency
+f = 0:length(PSD)-1;
+
+// Plot 1 - Original signal
+subplot(3,2,1);
+plot(t,x);
+xlabel("Time");
+ylabel("Amplitude");
+title("Analog Signal");
+
+// Plot 2 - Autocorrelation
+subplot(3,2,2);
+plot(Rxx);
+xlabel("Samples");
+ylabel("Amplitude");
+title("Autocorrelation");
+
+// Plot 3 - PSD
+subplot(3,2,3);
+plot(f,PSD);
+xlabel("Frequency");
+ylabel("Power");
+title("Power Spectral Density");
+
+// Plot 4 - Autocorrelation waveform
+subplot(3,2,4);
+plot(Rxx);
+xlabel("Lag");
+ylabel("Rxx");
+title("Autocorrelation");
+
+// Plot 5 - Frequency spectrum
+subplot(3,2,5);
+plot(f,PSD);
+xlabel("Frequency");
+ylabel("Power");
+title("PSD");
+
+## OUTPUT
+<img width="736" height="576" alt="image" src="https://github.com/user-attachments/assets/e4a8f022-7d89-4acf-8fc0-82a918e179b0" />
+
+## RESULT
+Thus the autocorrelation and PSD are executed in Scilab and output is verified.
